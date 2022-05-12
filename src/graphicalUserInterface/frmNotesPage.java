@@ -1,5 +1,6 @@
 package graphicalUserInterface;
 
+import DataStructures.NoteQueueLinkedList;
 import SQLDataBase.DbHelperEmployee;
 import SQLDataBase.DbHelperNotes;
 import factory.personnel.payroll.system.Note;
@@ -586,7 +587,15 @@ public class frmNotesPage extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDeleteNoteIdActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        int id = Integer.valueOf(txtDeleteNoteId.getText());
+        NoteQueueLinkedList queueNote = null;
+        try {
+            queueNote = getNotes();
+        } catch (SQLException ex) {
+            Logger.getLogger(frmNotesPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        int id = Integer.valueOf(queueNote.getRear().getId());
             DbHelperEmployee helper = new DbHelperEmployee();
             Connection connection = null;
             PreparedStatement statement = null;
@@ -596,6 +605,7 @@ public class frmNotesPage extends javax.swing.JFrame {
                 statement = connection.prepareStatement(sql);
                 statement.setInt(1, id);
                 int result = statement.executeUpdate();
+                queueNote.dequeue(); //gerek olmayabilir.
                 JOptionPane.showMessageDialog(null, "Note deleted.");
                 populateTable();
                 System.out.println("Note deleted.");
@@ -732,8 +742,20 @@ public class frmNotesPage extends javax.swing.JFrame {
     private void populateTable() {
         model = (DefaultTableModel)tblNotes.getModel();
         model.setRowCount(0);
+        NoteQueueLinkedList queueNote;
+        Note newNote;
+        ArrayList<Note> notes = new ArrayList<>();
+        
         try {
-            ArrayList<Note> notes = getNotes();
+            queueNote = getNotes();
+            while(true){
+                newNote = queueNote.popQueue();
+                if(newNote==null)
+                    break;
+                else{
+                   notes.add(newNote);
+                }
+            }
             for(Note note: notes){
                 Object[] rows = {
                     note.getId(),
@@ -742,36 +764,37 @@ public class frmNotesPage extends javax.swing.JFrame {
                 model.addRow(rows);
             }
         } catch (SQLException ex) {
-            
+            System.out.println("SQL exception");
         }
     }
     
-    public ArrayList<Note> getNotes()throws SQLException{
+    public NoteQueueLinkedList getNotes()throws SQLException{
         DbHelperNotes helper = new DbHelperNotes();
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet;
-        ArrayList<Note> notes = null;
-        try {
+        
+        NoteQueueLinkedList queueNote = null;
+        try{
             connection = helper.getConnection();
             statement = connection.createStatement();
             resultSet = statement.executeQuery("select * from factorynotes.notes");
-            notes = new ArrayList<Note>();
-            while (resultSet.next()) {
-                notes.add(new Note(
-                resultSet.getInt("noteId"),
-                resultSet.getString("note"),
-                resultSet.getString("date")));
+            queueNote = new NoteQueueLinkedList();
+            while(resultSet.next()){
+                queueNote.enqueue(new Note(
+                    resultSet.getInt("noteId"),
+                    resultSet.getString("note"),
+                    resultSet.getString("date")));
             }
-            noteSize = notes.size();
-            System.out.println(notes.size());
-        } catch (SQLException exception) {
+        }
+        catch (SQLException exception) {
             helper.showErrorMassage(exception);
         } finally {
             statement.close();
             connection.close();
             System.out.println("Connection closed...");
         }
-        return notes;
+        return queueNote;
     }
+    
 }

@@ -4,6 +4,7 @@ public class Note {
     private int id;
     private String note;
     private String date;
+    public Note next;
     
     public Note() {
         
@@ -13,6 +14,7 @@ public class Note {
         this.id = id;
         this.note = note;
         this.date = date;
+        this.next = null;
     }
     
     public int getId() {return id;}

@@ -6,6 +6,7 @@ public class Employee extends Person{
     private double tax;
     private double hourlyWage;
     private int workingHours;
+    public Employee next; //Linked list node.next
     
     public Employee(){}
     
@@ -23,6 +24,7 @@ public class Employee extends Person{
         this.tax = tax;
         this.hourlyWage = hourlyWage;
         this.workingHours = workingHours;
+        this.next = null;
     }
 
     public double getSalary() {return salary;}

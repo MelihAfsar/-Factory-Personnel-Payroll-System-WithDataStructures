@@ -1,4 +1,5 @@
 package graphicalUserInterface;
+import DataStructures.EmployeeLinkedList;
 import SQLDataBase.DbManager;
 import factory.personnel.payroll.system.Employee;
 import guiManager.FrameChangeSettings;
@@ -19,14 +20,16 @@ public class frmPersonViewing extends javax.swing.JFrame {
         model = (DefaultTableModel) tblEmployee.getModel();
         dbManager = new DbManager();
         try {
-            ArrayList<Employee> employees = dbManager.selectDemo();
-            for (Employee employee: employees) {
+            EmployeeLinkedList linkedList = dbManager.selectDemo();
+            Employee employee = linkedList.getHeadNode();
+            while(employee != null){
                 Object[] row = {employee.getId(),employee.getName(),employee.getSurname()
                         ,employee.getGender(),employee.getAge(),employee.geteMail()
                         ,employee.getDepartment(),employee.getAddress(),employee.getSalary()
                         ,employee.getGrossSalary(),employee.getTax(),employee.getHourlyWage(),employee.getWorkingHours()};
                 model.addRow(row);
-            }
+                employee = employee.next;
+                }
         } catch (SQLException ex) {}
     }
 

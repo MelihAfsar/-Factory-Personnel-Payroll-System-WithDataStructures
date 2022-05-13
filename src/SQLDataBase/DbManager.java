@@ -1,5 +1,6 @@
 package SQLDataBase;
 /*@author AFSAR*/
+import DataStructures.EmployeeLinkedList;
 import factory.personnel.payroll.system.Employee;
 import factory.personnel.payroll.system.EmployeeManager;
 import factory.personnel.payroll.system.ManagementManager;
@@ -28,20 +29,21 @@ public class DbManager {
         }
     }
     
-    public ArrayList<Employee> selectDemo() throws SQLException {
+    public EmployeeLinkedList selectDemo() throws SQLException {
         DbHelperEmployee helper = new DbHelperEmployee();
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet;
-        ArrayList<Employee> employees = null;
+        EmployeeLinkedList linkedList = null;
+        //Linkedlist data structure
         try {
             connection = helper.getConnection();
             statement = connection.createStatement();
             resultSet = statement.executeQuery("select id,name,surname,gender,age"
                     + ",eMail,department,address,salary,grossSalary,tax,hourlyWage,workingHours from employee");
-            employees = new ArrayList<Employee>();
+            linkedList = new EmployeeLinkedList();
             while (resultSet.next()) {
-                employees.add(new Employee(
+                linkedList.add(new Employee(
                         resultSet.getInt("id"),
                         resultSet.getString("name"),
                         resultSet.getString("surname"),
@@ -56,14 +58,13 @@ public class DbManager {
                         resultSet.getDouble("hourlyWage"),
                         resultSet.getInt("workingHours")));                       
             }
-            System.out.println(employees.size());
         } catch (SQLException exception) {
             helper.showErrorMassage(exception);
         } finally {
             connection.close();
             System.out.println("Connection closed.");
         }
-        return employees;
+        return linkedList;
     }
 
     public void insertData(int id,String name,String surname, String gender, int age, String eMail, String department, 
@@ -131,6 +132,47 @@ public class DbManager {
             connection.close();
             System.out.println("Connection closed.");
         }
+    }
+        public Employee getEmployee(int id) throws SQLException {
+        DbHelperEmployee helper = new DbHelperEmployee();
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet;
+        
+        Employee temp;
+        try {
+            connection = helper.getConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("select id,name,surname,gender,age"
+                    + ",eMail,department,address,salary,grossSalary,tax,hourlyWage,workingHours from employee");
+            
+            while (resultSet.next()) {
+                if(resultSet.getInt("id")==id){
+                    temp = new Employee(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("surname"),
+                        resultSet.getString("gender"),
+                        resultSet.getInt("age"),
+                        resultSet.getString("eMail"),
+                        resultSet.getString("department"),
+                        resultSet.getString("address"),
+                        resultSet.getDouble("salary"),
+                        resultSet.getDouble("grossSalary"),
+                        resultSet.getDouble("tax"),
+                        resultSet.getDouble("hourlyWage"),
+                        resultSet.getInt("workingHours"));  
+                    return temp;
+                }                    
+            }
+            
+        } catch (SQLException exception) {
+            helper.showErrorMassage(exception);
+        } finally {
+            connection.close();
+            System.out.println("Connection closed.");
+        }
+        return null;
     }
 }
 

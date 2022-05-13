@@ -1,7 +1,7 @@
 package factory.personnel.payroll.system;
+import DataStructures.EmployeeLinkedList;
 import SQLDataBase.DbManager;
 import java.sql.SQLException;
-import java.util.ArrayList;
 /*@author AFSAR*/
 public class PersonManager {
     DbManager dbManager;
@@ -12,10 +12,11 @@ public class PersonManager {
         int totalPersonnel = 0;
         int totalFemalePersonnel = 0;
         int totalMalePersonnel = 0;
-        try {    
-             ArrayList<Employee> employees = dbManager.selectDemo();
-             for (Employee employee: employees) {
-                 if(employee.getGender().equals("female")){
+        try { 
+            EmployeeLinkedList linkedList = dbManager.selectDemo();
+            Employee temp = linkedList.getHeadNode();
+            while(temp != null){
+                 if(temp.getGender().equals("female")){
                     totalFemalePersonnel +=1;
                     totalPersonnel +=1;
                  }
@@ -23,9 +24,9 @@ public class PersonManager {
                     totalMalePersonnel +=1;
                     totalPersonnel +=1;
                  }
-             }
-         } catch (SQLException ex) {}
-        
+            temp = temp.next; 
+            }
+        } catch (SQLException ex) {}
         total[0] = totalPersonnel;
         total[1] = totalFemalePersonnel;
         total[2] = totalMalePersonnel;
@@ -46,7 +47,7 @@ public class PersonManager {
         650.000 TL          	40%
         */
            
-        double salary = 0;
+        double salary=0;
         salary = ((wageHourly * hoursWorking) + salaryTax);
         
         if(salary<0)

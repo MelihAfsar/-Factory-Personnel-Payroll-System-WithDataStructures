@@ -588,14 +588,20 @@ public class frmPersonnelRemove extends javax.swing.JFrame {
     private void btnShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowActionPerformed
         int id = Integer.valueOf(txtPeronnelId.getText());
         lblPersonnelId.setText(String.valueOf(id));
-        id-=1;
         dbManager = new DbManager();
         try {
-            ArrayList<Employee> employees = dbManager.selectDemo();
-            lblPersonnelName.setText(employees.get(id).getName());
-            lblPersonnelSurname.setText(employees.get(id).getSurname());
-            lblDepartment.setText(employees.get(id).getDepartment());
-            lbleMail.setText(employees.get(id).getAddress());
+            Employee employees = dbManager.getEmployee(id);
+            if(employees != null){
+                lblPersonnelName.setText(employees.getName());
+                lblPersonnelSurname.setText(employees.getSurname());
+                lblDepartment.setText(employees.getDepartment());
+                lbleMail.setText(employees.getAddress());
+            }else{
+                lblPersonnelName.setText("null");
+                lblPersonnelSurname.setText("null");
+                lblDepartment.setText("null");
+                lbleMail.setText("null");
+            }   
         } catch (SQLException ex) {
             Logger.getLogger(frmPersonnelRemove.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -608,7 +614,7 @@ public class frmPersonnelRemove extends javax.swing.JFrame {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         int id = Integer.valueOf(txtPeronnelId.getText());
         dbManager = new DbManager();
-        try {
+        try {//linked list yapısı gelecek
             dbManager.deleteDemo(id);
             JOptionPane.showMessageDialog(null, "Personnel Deleted.");
         } catch (SQLException ex) {

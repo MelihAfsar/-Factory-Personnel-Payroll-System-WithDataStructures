@@ -1,5 +1,6 @@
 package factory.personnel.payroll.system;
 
+import DataStructures.EmployeeLinkedList;
 import SQLDataBase.DbManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,12 +13,15 @@ public class EmployeeManager extends PersonManager{
     public double totalSalaryPaid() {
         dbManager = new DbManager();
         double total = 0;
-        try {    
-             ArrayList<Employee> employees = dbManager.selectDemo();
-             for (Employee employee: employees) {
-                    total += employee.getSalary();
-                }
-            }catch (SQLException ex) {}
+        try {
+            //Linkedlist
+            EmployeeLinkedList linkedList = dbManager.selectDemo();
+            Employee temp = linkedList.getHeadNode();
+            while(temp != null){
+                total += temp.getSalary();
+                temp = temp.next;
+            }              
+       }catch (SQLException ex) {}
         return total;
     }
 }

@@ -53,7 +53,6 @@ public class NoteQueueLinkedList {
     
     public Note popQueue(){
         if (this.front == null){
-            System.out.println("No notes to delete");
             return null;
         }
         Note temp = this.front;

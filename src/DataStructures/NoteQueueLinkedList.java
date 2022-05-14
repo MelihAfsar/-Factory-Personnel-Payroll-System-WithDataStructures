@@ -61,5 +61,4 @@ public class NoteQueueLinkedList {
             this.rear = null;
         return temp;
     }
-    
 }

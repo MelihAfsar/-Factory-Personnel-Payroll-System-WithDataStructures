@@ -1,5 +1,6 @@
 package graphicalUserInterface;
 import DataStructures.EmployeeLinkedList;
+import DataStructures.MergeSortAlgorithms;
 import SQLDataBase.DbManager;
 import factory.personnel.payroll.system.Employee;
 import guiManager.FrameChangeSettings;
@@ -56,6 +57,7 @@ public class frmPersonViewing extends javax.swing.JFrame {
         imgSearch = new javax.swing.JLabel();
         txtSearch = new javax.swing.JTextField();
         lblView = new javax.swing.JLabel();
+        btnSort = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -322,6 +324,15 @@ public class frmPersonViewing extends javax.swing.JFrame {
         lblView.setForeground(new java.awt.Color(0, 0, 153));
         lblView.setText("Personnel Information Display Screen");
 
+        btnSort.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnSort.setForeground(new java.awt.Color(0, 0, 204));
+        btnSort.setText("Sort");
+        btnSort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSortActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -335,19 +346,25 @@ public class frmPersonViewing extends javax.swing.JFrame {
                         .addGap(50, 50, 50)
                         .addComponent(lblFooter2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(52, 52, 52)
                                 .addComponent(imgSearch)
-                                .addGap(33, 33, 33)
-                                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 1090, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 1090, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(27, 27, 27))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1389, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(20, Short.MAX_VALUE))))
+                        .addContainerGap(20, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSort, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(457, 457, 457))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -359,9 +376,11 @@ public class frmPersonViewing extends javax.swing.JFrame {
                         .addComponent(lblView)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(imgSearch)
-                            .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(imgSearch))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSort, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)
                         .addComponent(jScrollPane1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblFooter2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -386,7 +405,7 @@ public class frmPersonViewing extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtSearchActionPerformed
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
@@ -476,6 +495,29 @@ public class frmPersonViewing extends javax.swing.JFrame {
         imgAdmin.setBackground(new java.awt.Color(204, 204, 204));
     }//GEN-LAST:event_imgAdminMouseExited
 
+    private void btnSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSortActionPerformed
+        dbManager = new DbManager();
+        MergeSortAlgorithms merge = new MergeSortAlgorithms();
+        try {
+            EmployeeLinkedList linkedList = dbManager.selectDemo();
+            Employee employee = linkedList.getHeadNode();
+            int index = linkedList.getNumberOfNodes();
+            for(int i=0;i<index;i++){
+                System.out.println(i);
+                model.removeRow(0);
+            }
+            employee = merge.mergeSort(employee);
+            while(employee != null){
+                Object[] row = {employee.getId(),employee.getName(),employee.getSurname()
+                        ,employee.getGender(),employee.getAge(),employee.geteMail()
+                        ,employee.getDepartment(),employee.getAddress(),employee.getSalary()
+                        ,employee.getGrossSalary(),employee.getTax(),employee.getHourlyWage(),employee.getWorkingHours()};
+                model.addRow(row);
+                employee = employee.next;
+                }
+        } catch (SQLException ex) {}
+    }//GEN-LAST:event_btnSortActionPerformed
+
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -507,6 +549,7 @@ public class frmPersonViewing extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSort;
     private javax.swing.JLabel imgAdd;
     private javax.swing.JLabel imgAdmin;
     private javax.swing.JLabel imgHome;

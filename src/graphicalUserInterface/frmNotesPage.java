@@ -753,15 +753,12 @@ public class frmNotesPage extends javax.swing.JFrame {
                 if(newNote==null)
                     break;
                 else{
-                   notes.add(newNote);
+                   Object[] rows = {
+                    newNote.getId(),
+                    newNote.getNote(),
+                    newNote.getDate()};
+                    model.addRow(rows);
                 }
-            }
-            for(Note note: notes){
-                Object[] rows = {
-                    note.getId(),
-                    note.getNote(),
-                    note.getDate()};
-                model.addRow(rows);
             }
         } catch (SQLException ex) {
             System.out.println("SQL exception");

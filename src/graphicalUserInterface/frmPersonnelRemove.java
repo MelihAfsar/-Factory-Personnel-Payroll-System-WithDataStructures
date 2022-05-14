@@ -614,7 +614,7 @@ public class frmPersonnelRemove extends javax.swing.JFrame {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         int id = Integer.valueOf(txtPeronnelId.getText());
         dbManager = new DbManager();
-        try {//linked list yapısı gelecek
+        try {
             dbManager.deleteDemo(id);
             JOptionPane.showMessageDialog(null, "Personnel Deleted.");
         } catch (SQLException ex) {

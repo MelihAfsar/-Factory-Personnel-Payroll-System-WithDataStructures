@@ -23,7 +23,7 @@ public class MergeSortAlgorithms {
         Employee newHead1 = mergeSort(head);
         Employee newHead2 = mergeSort(head2);
         Employee finalHead = merge(newHead1, newHead2);
-  
+        
         return finalHead;
     }
   
@@ -32,7 +32,7 @@ public class MergeSortAlgorithms {
     {
         Employee merged = new Employee(-1,"","","",0,"","","",0,0,0,0,0);
         Employee temp = merged;
-
+        
         while (head1 != null && head2 != null) {
             if (head1.getSalary() < head2.getSalary()) {
                 temp.next = head1;
@@ -55,9 +55,10 @@ public class MergeSortAlgorithms {
             temp = temp.next;
         }
         return merged.next;
+        
     }
   
-    public Employee findMid(Employee head)
+    public Employee findMid(Employee head)  //ortanca değeri bulur.
     {
         Employee slow = head, fast = head.next;
         while (fast != null && fast.next != null) {

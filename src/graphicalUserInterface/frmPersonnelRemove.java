@@ -586,10 +586,15 @@ public class frmPersonnelRemove extends javax.swing.JFrame {
     }//GEN-LAST:event_imgAdminMouseExited
 
     private void btnShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowActionPerformed
+        
+    
         int id = Integer.valueOf(txtPeronnelId.getText());
+        
         lblPersonnelId.setText(String.valueOf(id));
         dbManager = new DbManager();
+        
         try {
+            
             Employee employees = dbManager.getEmployee(id);
             if(employees != null){
                 lblPersonnelName.setText(employees.getName());

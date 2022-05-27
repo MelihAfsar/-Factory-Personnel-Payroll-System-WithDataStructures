@@ -1,13 +1,16 @@
 package graphicalUserInterface;
 import DataStructures.EmployeeLinkedList;
+import DataStructures.InterpolationSearch;
 import DataStructures.MergeSortAlgorithms;
 import SQLDataBase.DbManager;
 import factory.personnel.payroll.system.Employee;
 import guiManager.FrameChangeSettings;
+import java.awt.List;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -15,9 +18,12 @@ import javax.swing.table.TableRowSorter;
 public class frmPersonViewing extends javax.swing.JFrame {
     DefaultTableModel model;
     DbManager dbManager;
+    
     public frmPersonViewing() {
+     
         initComponents();
         setLocationRelativeTo(null);
+        
         model = (DefaultTableModel) tblEmployee.getModel();
         dbManager = new DbManager();
         try {
@@ -31,7 +37,9 @@ public class frmPersonViewing extends javax.swing.JFrame {
                 model.addRow(row);
                 employee = employee.next;
                 }
-        } catch (SQLException ex) {}
+        } catch (SQLException ex) {
+        }
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -58,6 +66,7 @@ public class frmPersonViewing extends javax.swing.JFrame {
         txtSearch = new javax.swing.JTextField();
         lblView = new javax.swing.JLabel();
         btnSort = new javax.swing.JButton();
+        searchBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -333,6 +342,15 @@ public class frmPersonViewing extends javax.swing.JFrame {
             }
         });
 
+        searchBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        searchBtn.setForeground(new java.awt.Color(0, 0, 204));
+        searchBtn.setText("Search");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -346,25 +364,25 @@ public class frmPersonViewing extends javax.swing.JFrame {
                         .addGap(50, 50, 50)
                         .addComponent(lblFooter2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(52, 52, 52)
-                                .addComponent(imgSearch)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 1090, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(27, 27, 27))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1389, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(20, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(imgSearch)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 1090, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSort, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(457, 457, 457))))
+                        .addGap(461, 461, 461))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -376,8 +394,9 @@ public class frmPersonViewing extends javax.swing.JFrame {
                         .addComponent(lblView)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(imgSearch))
+                            .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(imgSearch)
+                            .addComponent(searchBtn))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSort, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(3, 3, 3)
@@ -502,6 +521,7 @@ public class frmPersonViewing extends javax.swing.JFrame {
             EmployeeLinkedList linkedList = dbManager.selectDemo();
             Employee employee = linkedList.getHeadNode();
             int index = linkedList.getNumberOfNodes();
+            
             for(int i=0;i<index;i++){
                 System.out.println(i);
                 model.removeRow(0);
@@ -517,6 +537,38 @@ public class frmPersonViewing extends javax.swing.JFrame {
                 }
         } catch (SQLException ex) {}
     }//GEN-LAST:event_btnSortActionPerformed
+
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+
+        
+            DbManager manager = new DbManager(); //managere bağlanmak için obje oluşturuldu.
+            String searchVal =txtSearch.getText();
+            int searchId = Integer.valueOf(searchVal); //searchId Girilen
+            
+            InterpolationSearch inter = new InterpolationSearch();
+            
+            int SelectId [] = null;
+            int len = 0;
+            
+        try {
+            
+             SelectId = manager.selectId().stream().mapToInt(i -> i).toArray();
+             len = SelectId.length;
+             int result = inter.interpolationSearch(SelectId, 0, len-1, searchId); //dönen değer hangi indiste olduğudur.
+             
+             if(result == -1){
+                JOptionPane.showMessageDialog(null, "Person not Found!");
+            }else{
+                System.out.println("found person : "+result);
+                FrameChangeSettings.setVisible(this,new frmAlert(searchId));
+                //buradan value değeri başka bir yere yollanacaktır.
+            } 
+             
+        } catch (SQLException ex) {
+            Logger.getLogger(frmPersonViewing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_searchBtnActionPerformed
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -567,6 +619,7 @@ public class frmPersonViewing extends javax.swing.JFrame {
     private javax.swing.JLabel lblFooter1;
     private javax.swing.JLabel lblFooter2;
     private javax.swing.JLabel lblView;
+    private javax.swing.JButton searchBtn;
     private javax.swing.JTable tblEmployee;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables

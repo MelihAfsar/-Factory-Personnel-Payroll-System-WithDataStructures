@@ -5,11 +5,6 @@
 package DataStructures;
 
 import factory.personnel.payroll.system.Note;
-
-/**
- *
- * @author melih
- */
 public class NoteQueueLinkedList {
     Note front, rear;
     public NoteQueueLinkedList()

@@ -8,8 +8,8 @@ public class Employee extends Person{
     private int workingHours;
     public Employee next; //Linked list node.next
     
-    public Employee(){}
-    
+    public Employee(){   
+    }
     public Employee(int id,String name,String surname,String gender,int age,String eMail,String department,String address,double salary,double grossSalary,double tax,double hourlyWage,int workingHours){
         super.setId(id);
         super.setName(name);

@@ -11,10 +11,12 @@ import factory.personnel.payroll.system.Employee;
  * @author melih
  */
 public class EmployeeLinkedList {
+    
     private Employee headNode;
     private int numberOfNodes;
     
     public EmployeeLinkedList(){
+    
         headNode = null;
         numberOfNodes=0;
     }
@@ -39,13 +41,13 @@ public class EmployeeLinkedList {
             System.out.println(employee.getName());
             employee = employee.next;
         }
-                
     }
 
     /**
      * @return the headNode
      */
     public Employee getHeadNode() {
+        
         return headNode;
     }
 

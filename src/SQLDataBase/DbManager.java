@@ -5,6 +5,7 @@ import factory.personnel.payroll.system.Employee;
 import factory.personnel.payroll.system.EmployeeManager;
 import factory.personnel.payroll.system.ManagementManager;
 import factory.personnel.payroll.system.PersonManager;
+import java.awt.List;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -28,6 +29,8 @@ public class DbManager {
             System.out.println("Connection closed.");
         }
     }
+    
+    
     
     public EmployeeLinkedList selectDemo() throws SQLException {
         DbHelperEmployee helper = new DbHelperEmployee();
@@ -66,6 +69,35 @@ public class DbManager {
         }
         return linkedList;
     }
+    
+    public static ArrayList<Integer> selectId() throws SQLException{
+        
+        ArrayList list = new ArrayList();
+        DbHelperEmployee helper = new DbHelperEmployee();
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet;
+        
+        try {
+            connection = helper.getConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("select id from employee");
+            while (resultSet.next()) {
+                 list.add(resultSet.getInt("id"));
+            }
+        } catch (SQLException exception) {
+            helper.showErrorMassage(exception);
+             
+        } finally {
+            connection.close();
+            System.out.println("Connection closed.");
+        }
+        return list; 
+        
+    }
+    
+    
+    
 
     public void insertData(int id,String name,String surname, String gender, int age, String eMail, String department, 
             String address, Double salary, Double grossSalary, Double tax, double hourlyWage, int workingHours) throws SQLException {
@@ -134,6 +166,7 @@ public class DbManager {
         }
     }
         public Employee getEmployee(int id) throws SQLException {
+            
         DbHelperEmployee helper = new DbHelperEmployee();
         Connection connection = null;
         Statement statement = null;

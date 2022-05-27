@@ -63,9 +63,8 @@ public class frmNotesPage extends javax.swing.JFrame {
         dateChooser = new com.toedter.calendar.JDateChooser();
         jPanel5 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        txtDeleteNoteId = new javax.swing.JTextField();
-        btnDelete = new javax.swing.JButton();
+        btn_stack = new javax.swing.JButton();
+        btn_queue = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -403,22 +402,23 @@ public class frmNotesPage extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(0, 0, 204));
         jLabel4.setText("Delete Note");
 
-        jLabel5.setFont(new java.awt.Font("Trebuchet MS", 1, 15)); // NOI18N
-        jLabel5.setText("Note Id:");
-
-        txtDeleteNoteId.addActionListener(new java.awt.event.ActionListener() {
+        btn_stack.setBackground(new java.awt.Color(0, 0, 204));
+        btn_stack.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        btn_stack.setForeground(new java.awt.Color(255, 255, 255));
+        btn_stack.setText("STACK DELETE");
+        btn_stack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDeleteNoteIdActionPerformed(evt);
+                btn_stackActionPerformed(evt);
             }
         });
 
-        btnDelete.setBackground(new java.awt.Color(0, 0, 204));
-        btnDelete.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        btnDelete.setForeground(new java.awt.Color(255, 255, 255));
-        btnDelete.setText("DELETE");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+        btn_queue.setBackground(new java.awt.Color(0, 0, 204));
+        btn_queue.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        btn_queue.setForeground(new java.awt.Color(255, 255, 255));
+        btn_queue.setText("QUEUE DELETE");
+        btn_queue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
+                btn_queueActionPerformed(evt);
             }
         });
 
@@ -426,32 +426,27 @@ public class frmNotesPage extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnDelete))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
-                        .addComponent(txtDeleteNoteId, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(41, 41, 41))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jLabel4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(91, 91, 91)
+                .addComponent(btn_stack, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+                .addComponent(btn_queue, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(94, 94, 94))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addGap(24, 24, 24)
+                .addGap(97, 97, 97)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtDeleteNoteId, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnDelete)
-                .addGap(25, 25, 25))
+                    .addComponent(btn_stack, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_queue, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -582,11 +577,8 @@ public class frmNotesPage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnNoteAddActionPerformed
 
-    private void txtDeleteNoteIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDeleteNoteIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDeleteNoteIdActionPerformed
-
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+    private void btn_stackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_stackActionPerformed
+        
         NoteQueueLinkedList queueNote = null;
         try {
             queueNote = getNotes();
@@ -616,12 +608,12 @@ public class frmNotesPage extends javax.swing.JFrame {
                     statement.close();
                     connection.close();
                     System.out.println("Connection closed.");
-                    txtDeleteNoteId.setText("");
+                   
                 } catch (SQLException ex) {
                     Logger.getLogger(frmNotesPage.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }  
-    }//GEN-LAST:event_btnDeleteActionPerformed
+    }//GEN-LAST:event_btn_stackActionPerformed
 
     private void imgHomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgHomeMouseEntered
         imgHome.setBackground(new java.awt.Color(153, 153, 255));
@@ -671,6 +663,10 @@ public class frmNotesPage extends javax.swing.JFrame {
         imgAdmin.setBackground(new java.awt.Color(204, 204, 204));
     }//GEN-LAST:event_imgAdminMouseExited
 
+    private void btn_queueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_queueActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_queueActionPerformed
+
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -705,8 +701,9 @@ public class frmNotesPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnNoteAdd;
+    private javax.swing.JButton btn_queue;
+    private javax.swing.JButton btn_stack;
     private com.toedter.calendar.JDateChooser dateChooser;
     private javax.swing.JLabel imgAdd;
     private javax.swing.JLabel imgAdmin;
@@ -720,7 +717,6 @@ public class frmNotesPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -735,7 +731,6 @@ public class frmNotesPage extends javax.swing.JFrame {
     private javax.swing.JLabel lblNotes;
     private javax.swing.JTable tblNotes;
     private javax.swing.JTextField txtAddNoteId;
-    private javax.swing.JTextField txtDeleteNoteId;
     private javax.swing.JTextArea txtNote;
     // End of variables declaration//GEN-END:variables
 

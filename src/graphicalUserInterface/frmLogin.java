@@ -100,6 +100,7 @@ public class frmLogin extends javax.swing.JFrame {
         txtName.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         txtName.setForeground(new java.awt.Color(0, 0, 153));
         txtName.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtName.setText("admin");
         txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNameActionPerformed(evt);
@@ -133,6 +134,7 @@ public class frmLogin extends javax.swing.JFrame {
         lblFooter2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         txtPassword.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        txtPassword.setText("1234");
         txtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPasswordActionPerformed(evt);

@@ -501,13 +501,15 @@ public class frmPersonViewing extends javax.swing.JFrame {
         try {
             EmployeeLinkedList linkedList = dbManager.selectDemo();
             Employee employee = linkedList.getHeadNode();
-            int index = linkedList.getNumberOfNodes();
+            
+            // Bu kod merge sort algoritmasi ile siralanacak olan tablonun önce temizlenmesini saglar.
+            int index = linkedList.getNumberOfNodes(); // linkedlist yapisindaki tum node larin sayisi alinir.
             for(int i=0;i<index;i++){
                 System.out.println(i);
-                model.removeRow(0);
-            }
-            employee = merge.mergeSort(employee);
-            while(employee != null){
+                model.removeRow(0); // Her node, tablodan bu kod ile silinir.
+            }            
+            employee = merge.mergeSort(employee);  // mergeSort ile linkedlist siralanir ve siralanmis linkedlist geri doner.
+            while(employee != null){ //linkedlist yapisindaki nodelar tabloya yazilir.
                 Object[] row = {employee.getId(),employee.getName(),employee.getSurname()
                         ,employee.getGender(),employee.getAge(),employee.geteMail()
                         ,employee.getDepartment(),employee.getAddress(),employee.getSalary()

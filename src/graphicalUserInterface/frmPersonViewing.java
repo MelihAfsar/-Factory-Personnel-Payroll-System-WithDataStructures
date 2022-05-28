@@ -550,7 +550,6 @@ public class frmPersonViewing extends javax.swing.JFrame {
             int searchId = Integer.valueOf(searchVal); //searchId Girilen
             
             InterpolationSearch inter = new InterpolationSearch();
-            
             int SelectId [] = null;
             int len = 0;
             
@@ -563,11 +562,12 @@ public class frmPersonViewing extends javax.swing.JFrame {
              if(result == -1){
                 JOptionPane.showMessageDialog(null, "Person not Found!");
             }else{
-                System.out.println("found person : "+result);
-                FrameChangeSettings.setVisible(this,new frmAlert(searchId));
-                //buradan value değeri başka bir yere yollanacaktır.
-            } 
-             
+                 for(int i =0;i<len;i++){
+                     if( i == result){
+                          FrameChangeSettings.setVisible(this,new frmAlert(SelectId[i])); 
+                     }
+                 }
+            }
         } catch (SQLException ex) {
             Logger.getLogger(frmPersonViewing.class.getName()).log(Level.SEVERE, null, ex);
         }

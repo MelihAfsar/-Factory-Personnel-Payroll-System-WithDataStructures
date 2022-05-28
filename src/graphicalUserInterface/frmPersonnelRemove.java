@@ -9,7 +9,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/* @author AFSAR */
+/* 
+*@author AFSAR
+* This class performs the deletion from the database with the interface.
+*/
 public class frmPersonnelRemove extends javax.swing.JFrame {
     DbManager dbManager;
     

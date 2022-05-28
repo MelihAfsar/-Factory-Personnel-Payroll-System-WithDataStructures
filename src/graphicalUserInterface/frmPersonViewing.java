@@ -14,7 +14,10 @@ import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-/* @author AFSAR */
+/**
+ * @author AFSAR
+ * This class performs the operation of displaying the information in the database with the interface.
+ */
 public class frmPersonViewing extends javax.swing.JFrame {
     DefaultTableModel model;
     DbManager dbManager;

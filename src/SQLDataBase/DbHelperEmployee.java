@@ -1,9 +1,12 @@
 package SQLDataBase;
-/* @author AFSAR */
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * @author MELIH AFSAR 
+ * This class provides a connection to the database where the employee information is stored.
+ */
 public class DbHelperEmployee {
     private String userName = "root";
     private String userPassword = "12345";

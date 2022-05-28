@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/*@author AFSAR*/
+/**
+ * @author MELIH AFSAR
+ * This class provides a connection to the database where the notes information is stored.
+ */
 public class DbHelperNotes {
     private String userName = "root";
     private String userPassword = "12345";

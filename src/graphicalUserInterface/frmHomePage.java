@@ -4,7 +4,9 @@ import factory.personnel.payroll.system.EmployeeManager;
 import factory.personnel.payroll.system.PersonManager;
 import guiManager.FrameChangeSettings;
 
-/* @author AFSAR */
+/** @author AFSAR 
+  * This class allows general information for the factory to be displayed in the interface.
+*/
 public class frmHomePage extends javax.swing.JFrame {
     public frmHomePage() {
         initComponents();

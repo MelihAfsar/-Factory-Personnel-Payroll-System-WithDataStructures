@@ -1,5 +1,5 @@
 package SQLDataBase;
-/*@author AFSAR*/
+
 import DataStructures.EmployeeLinkedList;
 import factory.personnel.payroll.system.Employee;
 import factory.personnel.payroll.system.EmployeeManager;
@@ -9,7 +9,15 @@ import java.awt.List;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * @author MELIH AFSAR
+ * This class performs database operations.
+ */
 public class DbManager {
+    /**
+     * This method deletes the information whose id is given from the database.
+     * @throws SQLException
+     */
     public void deleteDemo(int id)throws SQLException{
         DbHelperEmployee helper = new DbHelperEmployee();
         Connection connection = null;
@@ -31,7 +39,12 @@ public class DbManager {
     }
     
     
-    
+    /**
+     * 
+     * This method fetches information from the database.
+     * @throws SQLException
+     * @return EmployeeLinkedList 
+     */
     public EmployeeLinkedList selectDemo() throws SQLException {
         DbHelperEmployee helper = new DbHelperEmployee();
         Connection connection = null;
@@ -70,8 +83,14 @@ public class DbManager {
         return linkedList;
     }
     
+    /**
+     * @author Kenan Baylan
+     * This method keeps database id information in arraylist
+     * @throws SQLException 
+     * @return ArrayList<Integer> 
+     * 
+     */
     public static ArrayList<Integer> selectId() throws SQLException{
-        
         ArrayList list = new ArrayList();
         DbHelperEmployee helper = new DbHelperEmployee();
         Connection connection = null;
@@ -97,7 +116,10 @@ public class DbManager {
     }
     
     
-    
+    /**
+     *  This method adds information to the database.
+     * @throws SQLException
+     */
 
     public void insertData(int id,String name,String surname, String gender, int age, String eMail, String department, 
             String address, Double salary, Double grossSalary, Double tax, double hourlyWage, int workingHours) throws SQLException {
@@ -135,6 +157,11 @@ public class DbManager {
         }
     }
     
+    /**
+     *  This method updates information to the database.
+     * @throws SQLException
+     */
+ 
     public void updateData(int id,String address, double hourlyWage, int workingHours, double tax) throws SQLException {
         DbHelperEmployee helper = new DbHelperEmployee();
         Connection connection = null;
@@ -165,8 +192,12 @@ public class DbManager {
             System.out.println("Connection closed.");
         }
     }
+    
+    /**
+     * This method pulls the information given the id from the database.
+     * @throws SQLException
+     */
         public Employee getEmployee(int id) throws SQLException {
-            
         DbHelperEmployee helper = new DbHelperEmployee();
         Connection connection = null;
         Statement statement = null;

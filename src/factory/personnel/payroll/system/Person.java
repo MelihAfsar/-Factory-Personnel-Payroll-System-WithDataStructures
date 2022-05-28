@@ -1,5 +1,8 @@
 package factory.personnel.payroll.system;
-/* @author AFSAR */
+/**
+ * @author AFSAR 
+ * This class contains the person information.
+ */
 public class Person {
     private int id;
     private String name;

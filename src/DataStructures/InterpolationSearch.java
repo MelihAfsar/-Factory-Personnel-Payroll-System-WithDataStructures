@@ -7,6 +7,8 @@ package DataStructures;
 /**
  *
  * @author kenan
+ * 
+ * This class contains the methods of the Interpolation search algorithm.
  */
 public class InterpolationSearch {
     
@@ -25,10 +27,5 @@ public class InterpolationSearch {
             }
         }
         return -1;
-    }
-
-    public Integer interpolationSearch(Integer[] SelectId, int i, Integer len, Integer searchId) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
+    }    
 }

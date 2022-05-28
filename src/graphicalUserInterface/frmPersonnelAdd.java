@@ -9,7 +9,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/* @author AFSAR */
+/**
+ * @author AFSAR 
+ * This class performs the insertion to the database with the interface.
+ */
 public class frmPersonnelAdd extends javax.swing.JFrame {
     public frmPersonnelAdd() {
         initComponents();

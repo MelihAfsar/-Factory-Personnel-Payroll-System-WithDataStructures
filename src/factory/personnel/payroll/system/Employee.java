@@ -1,5 +1,9 @@
 package factory.personnel.payroll.system;
-/*@author AFSAR */
+/**
+ * This class contains employee information.
+ * It inherits from the person class.
+ * @author AFSAR 
+ */
 public class Employee extends Person{
     private double salary;
     private double grossSalary;

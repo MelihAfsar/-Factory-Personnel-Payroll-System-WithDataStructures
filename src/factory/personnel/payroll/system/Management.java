@@ -1,5 +1,9 @@
 package factory.personnel.payroll.system;
-/* @author AFSAR */
+/**
+ * @author AFSAR 
+ * This class contains the information of the managements. 
+ * It inherits from the Person class.
+ */
 public class Management extends Person{
     private String userName;
     private String userPassword;

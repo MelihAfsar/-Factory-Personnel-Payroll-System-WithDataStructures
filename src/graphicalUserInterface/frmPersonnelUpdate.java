@@ -8,7 +8,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/* @author AFSAR */
+/** @author AFSAR 
+*This class provides interface for updating employee information.
+*/
 public class frmPersonnelUpdate extends javax.swing.JFrame {
     DbManager dbManager;
     

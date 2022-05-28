@@ -15,7 +15,10 @@ import javax.swing.table.DefaultTableModel;
 
 
 
-/* @author AFSAR */
+/**
+ * @author AFSAR 
+ * This class displays the admin information and performs the update operations through the interface.
+ */
 public class frmAdminMenu extends javax.swing.JFrame {
     DbManager dbManager;
     DbManagerManagement dbManagerManagement;

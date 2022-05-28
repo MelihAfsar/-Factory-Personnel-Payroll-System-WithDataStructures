@@ -8,7 +8,8 @@ import factory.personnel.payroll.system.Employee;
 
 /**
  *
- * @author melih
+ * @author MELIH AFSAR
+ * This class contains the methods of the Merge sort algorithm.
  */
 public class MergeSortAlgorithms {
     // Function to merge sort
@@ -27,7 +28,9 @@ public class MergeSortAlgorithms {
         return finalHead;
     }
   
-    
+    /** 
+     * This method splits the linked list structure in half.
+     */
     public Employee merge(Employee head1, Employee head2)
     {
         Employee merged = new Employee(-1,"","","",0,"","","",0,0,0,0,0);
@@ -58,7 +61,7 @@ public class MergeSortAlgorithms {
         
     }
   
-    public Employee findMid(Employee head)  //ortanca değeri bulur.
+    public Employee findMid(Employee head)
     {
         Employee slow = head, fast = head.next;
         while (fast != null && fast.next != null) {

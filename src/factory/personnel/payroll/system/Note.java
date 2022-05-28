@@ -1,5 +1,7 @@
 package factory.personnel.payroll.system;
-/*@author AFSAR*/
+/**
+ * @author AFSAR 
+ */
 public class Note {
     private int id;
     private String note;

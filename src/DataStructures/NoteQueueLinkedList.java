@@ -3,8 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DataStructures;
-
 import factory.personnel.payroll.system.Note;
+
+/**
+ * @author MELIH AFSAR
+ * This class allows Not nodes to be kept in the queue data structure.
+ */
 public class NoteQueueLinkedList {
     Note front, rear;
     public NoteQueueLinkedList()
@@ -42,8 +46,8 @@ public class NoteQueueLinkedList {
             this.rear = null;
     }
     
-    public Note getRear(){
-        return this.rear;
+    public Note getFront(){
+        return this.front;
     }
     
     public Note popQueue(){

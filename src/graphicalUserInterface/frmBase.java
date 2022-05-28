@@ -1,5 +1,8 @@
 package graphicalUserInterface;
-/* @author AFSAR */
+/**
+ * @author AFSAR 
+ * This class is the template class for the application.
+ */
 public class frmBase extends javax.swing.JFrame {
     public frmBase() {
         initComponents();

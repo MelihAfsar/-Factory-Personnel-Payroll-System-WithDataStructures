@@ -4,7 +4,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/*@author AFSAR*/
+/**
+ * @author MELIH AFSAR
+ */
 public class DateFunction {
     public static String date() throws ParseException {
         Date presentTense = new Date();

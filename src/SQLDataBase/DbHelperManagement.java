@@ -3,7 +3,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/* @author AFSAR*/
+/** 
+ * @author MELIH AFSAR
+ * This class provides a connection to the database where the management information is stored.
+ */
 public class DbHelperManagement {
     private String userName = "root";
     private String userPassword = "12345";

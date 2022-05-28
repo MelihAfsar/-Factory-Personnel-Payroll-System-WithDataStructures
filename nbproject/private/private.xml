@@ -3,25 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/melih/Desktop/Me/GithubProjects/Factory-Personnel-Payroll-System-main/Factory-Personnel-Payroll-System-main/src/graphicalUserInterface/frmPersonViewing.java</file>
-=======
-            <file>file:/C:/Users/kenan/Desktop/Project/Java/Factory-Personnel-Payroll/src/graphicalUserInterface/frmPersonnelAdd.java</file>
-            <file>file:/C:/Users/kenan/Desktop/Project/Java/Factory-Personnel-Payroll/src/DataStructures/EmployeeLinkedList.java</file>
-            <file>file:/C:/Users/kenan/Desktop/Project/Java/Factory-Personnel-Payroll/src/graphicalUserInterface/frmPersonnelUpdate.java</file>
-            <file>file:/C:/Users/kenan/Desktop/Project/Java/Factory-Personnel-Payroll/src/SQLDataBase/DbManagerManagement.java</file>
-            <file>file:/C:/Users/kenan/Desktop/Project/Java/Factory-Personnel-Payroll/src/DataStructures/MergeSortAlgorithms.java</file>
-            <file>file:/C:/Users/kenan/Desktop/Project/Java/Factory-Personnel-Payroll/src/graphicalUserInterface/frmNotesPage.java</file>
-            <file>file:/C:/Users/kenan/Desktop/Project/Java/Factory-Personnel-Payroll/src/graphicalUserInterface/frmPersonViewing.java</file>
-            <file>file:/C:/Users/kenan/Desktop/Project/Java/Factory-Personnel-Payroll/src/graphicalUserInterface/frmPersonnelRemove.java</file>
-            <file>file:/C:/Users/kenan/Desktop/Project/Java/Factory-Personnel-Payroll/src/graphicalUserInterface/frmHomePage.java</file>
-            <file>file:/C:/Users/kenan/Desktop/Project/Java/Factory-Personnel-Payroll/src/graphicalUserInterface/frmBase.java</file>
-            <file>file:/C:/Users/kenan/Desktop/Project/Java/Factory-Personnel-Payroll/src/graphicalUserInterface/frmAdminMenu.java</file>
-            <file>file:/C:/Users/kenan/Desktop/Project/Java/Factory-Personnel-Payroll/src/factory/personnel/payroll/system/Employee.java</file>
-            <file>file:/C:/Users/kenan/Desktop/Project/Java/Factory-Personnel-Payroll/src/SQLDataBase/DbManager.java</file>
-            <file>file:/C:/Users/kenan/Desktop/Project/Java/Factory-Personnel-Payroll/src/DataStructures/BinarySearch.java</file>
-            <file>file:/C:/Users/kenan/Desktop/Project/Java/Factory-Personnel-Payroll/src/DataStructures/NoteQueueLinkedList.java</file>
->>>>>>> 32547ca9b0306da6006e68488f1a092733ef77c6
+            <file>file:/C:/Users/melih/Desktop/Me/GithubProjects/Factory-Personnel-Payroll-System-main/Factory-Personnel-Payroll-System-main/src/graphicalUserInterface/frmLogin.java</file>
         </group>
     </open-files>
 </project-private>

@@ -10,8 +10,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-/*@author AFSAR*/
+/**
+ * @author MELIH AFSAR
+ * This class performs database operations.
+ */
 public class DbManagerManagement {
+    /**
+     * 
+     * This method fetches information from the database.
+     * @throws SQLException
+     * @return ArrayList<Management> 
+     */
     public ArrayList<Management> selectDemo() throws SQLException {
         DbHelperManagement helper = new DbHelperManagement();
         Connection connection = null;
@@ -46,6 +55,10 @@ public class DbManagerManagement {
         return managements;
     }
     
+    /**
+     *  This method updates information to the database.
+     * @throws SQLException
+     */
     public void updateData(int id,String name, String surname, String eMail,String department, String userName, String userPassword) throws SQLException {
         DbHelperManagement helper = new DbHelperManagement();
         Connection connection = null;

@@ -7,6 +7,9 @@ import java.util.ArrayList;
 
 /**
  * @author AFSAR
+ * This class handles employee related operations. 
+ * It inherits from the Person Manager class
+ * .
  */
 public class EmployeeManager extends PersonManager{
     @Override

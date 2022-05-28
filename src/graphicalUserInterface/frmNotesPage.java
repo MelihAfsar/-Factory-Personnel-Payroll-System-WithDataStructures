@@ -1,6 +1,7 @@
 package graphicalUserInterface;
 
 import DataStructures.NoteQueueLinkedList;
+import DataStructures.NoteStackLinkedList;
 import SQLDataBase.DbHelperEmployee;
 import SQLDataBase.DbHelperNotes;
 import factory.personnel.payroll.system.Note;
@@ -19,7 +20,12 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
-/* @author AFSAR */
+/* 
+*
+* @author AFSAR 
+* This class is an interface for annotating, viewing, deleting by stack and queue data structure.
+* 
+*/
 public class frmNotesPage extends javax.swing.JFrame {
     public static int noteSize;
     
@@ -578,16 +584,15 @@ public class frmNotesPage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNoteAddActionPerformed
 
     private void btn_stackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_stackActionPerformed
-        
-        NoteQueueLinkedList queueNote = null;
+        NoteStackLinkedList stackNote = null;
         try {
-            queueNote = getNotes();
+            stackNote = getStackNotes();
         } catch (SQLException ex) {
             Logger.getLogger(frmNotesPage.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
-        int id = Integer.valueOf(queueNote.getRear().getId());
+        int id = Integer.valueOf(stackNote.pop());
             DbHelperEmployee helper = new DbHelperEmployee();
             Connection connection = null;
             PreparedStatement statement = null;
@@ -597,7 +602,7 @@ public class frmNotesPage extends javax.swing.JFrame {
                 statement = connection.prepareStatement(sql);
                 statement.setInt(1, id);
                 int result = statement.executeUpdate();
-                queueNote.dequeue(); //gerek olmayabilir.
+                
                 JOptionPane.showMessageDialog(null, "Note deleted.");
                 populateTable();
                 System.out.println("Note deleted.");
@@ -664,7 +669,40 @@ public class frmNotesPage extends javax.swing.JFrame {
     }//GEN-LAST:event_imgAdminMouseExited
 
     private void btn_queueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_queueActionPerformed
-        // TODO add your handling code here:
+        NoteQueueLinkedList queueNote = null;
+        try {
+            queueNote = getQueueNotes();
+        } catch (SQLException ex) {
+            Logger.getLogger(frmNotesPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        int id = Integer.valueOf(queueNote.popQueue().getId()); // getFront
+            DbHelperEmployee helper = new DbHelperEmployee();
+            Connection connection = null;
+            PreparedStatement statement = null;
+            try {
+                connection = helper.getConnection();
+                String sql = "delete from factorynotes.notes where noteId=?";
+                statement = connection.prepareStatement(sql);
+                statement.setInt(1, id);
+                int result = statement.executeUpdate();
+                queueNote.dequeue(); //gerek olmayabilir.
+                JOptionPane.showMessageDialog(null, "Note deleted.");
+                populateTable();
+                System.out.println("Note deleted.");
+            } catch (SQLException exception) {
+                helper.showErrorMassage(exception);
+            } finally {
+                try {
+                    statement.close();
+                    connection.close();
+                    System.out.println("Connection closed.");
+                   
+                } catch (SQLException ex) {
+                    Logger.getLogger(frmNotesPage.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }  
     }//GEN-LAST:event_btn_queueActionPerformed
 
     public static void main(String args[]) {
@@ -742,7 +780,7 @@ public class frmNotesPage extends javax.swing.JFrame {
         ArrayList<Note> notes = new ArrayList<>();
         
         try {
-            queueNote = getNotes();
+            queueNote = getQueueNotes();
             while(true){
                 newNote = queueNote.popQueue();
                 if(newNote==null)
@@ -760,7 +798,7 @@ public class frmNotesPage extends javax.swing.JFrame {
         }
     }
     
-    public NoteQueueLinkedList getNotes()throws SQLException{
+    public NoteQueueLinkedList getQueueNotes()throws SQLException{
         DbHelperNotes helper = new DbHelperNotes();
         Connection connection = null;
         Statement statement = null;
@@ -787,6 +825,36 @@ public class frmNotesPage extends javax.swing.JFrame {
             System.out.println("Connection closed...");
         }
         return queueNote;
+    }
+    
+    
+    public NoteStackLinkedList getStackNotes()throws SQLException{
+        DbHelperNotes helper = new DbHelperNotes();
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet;
+        
+        NoteStackLinkedList stackNote = null;
+        try{
+            connection = helper.getConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("select * from factorynotes.notes");
+            stackNote = new NoteStackLinkedList();
+            while(resultSet.next()){
+                stackNote.push(new Note(
+                    resultSet.getInt("noteId"),
+                    resultSet.getString("note"),
+                    resultSet.getString("date")));
+            }
+        }
+        catch (SQLException exception) {
+            helper.showErrorMassage(exception);
+        } finally {
+            statement.close();
+            connection.close();
+            System.out.println("Connection closed...");
+        }
+        return stackNote;
     }
     
 }

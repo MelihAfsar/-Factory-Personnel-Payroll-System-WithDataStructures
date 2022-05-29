@@ -25,7 +25,7 @@
   
   <h4><strong>frmNotesPage</strong></h4>
   
-  ![Notes](https://user-images.githubusercontent.com/77414773/149290538-c6e9adcb-c32a-4fd1-bf64-2d7afeee97b1.png)
+  ![note](https://user-images.githubusercontent.com/77414773/170859832-7618131e-3fcf-4549-a2ef-bbcaf7c2ed58.png)
 
   <h4><strong>frmPersonnelAdd</strong></h4>
   
@@ -37,7 +37,7 @@
 
   <h4><strong>frmPersonViewing</strong></h4>
   
-  ![View](https://user-images.githubusercontent.com/77414773/149291231-8e96bf2e-4641-40c7-b3ed-a013d18ffeb2.png)
+  ![view](https://user-images.githubusercontent.com/77414773/170859815-d59ac8c5-2d83-4b4f-b557-a8c3ff8f0fe8.png)
 
   <h4><strong>frmPersonnelRemove</strong></h4>
   
@@ -45,7 +45,7 @@
 
   <h4><strong>frmAdminMenu</strong></h4>
   
-  ![Admin](https://user-images.githubusercontent.com/77414773/149291258-fc6219f4-c440-436f-8fe1-5cbaf5966fa2.png)
+  ![admin](https://user-images.githubusercontent.com/77414773/170859839-5ede17e1-80ae-4507-abbe-c6f9fcb57766.png)
 
 
 <h3>Note:</h3>
@@ -67,6 +67,22 @@ You can run the program from the frmLogin class after the conditions are met.<br
   Program, Windows 11 (64 bit) işletim sisteminde Apache NetBeans IDE ortamında Java 11 sürümü ile geliştirilmiştir.<br>
   Veritabanı için MySQL kullanılmıştır.<br>
   Arayüz java swing ile geliştirilmiştir.<br>
+
+<h3><strong>Kullanılan Veri Yapıları Ve Algoritmalar</strong></h3>
+<h4><i>1) LinkedList:</i></h4> Fabrika çalışsanlarının bilgileri, yazılan java programında kullanılmak için veritabanından çekilip Arraylist e kayıt etmek yerine 
+LinkedList yapısı kullanılmıştır. Bu yapının kullanım amacı PersonelView frame'inde kişilerin tüm bilgilerinin görüntülenmesi aşamasında tabloya sırayla bilginin doldurulması işlevi Arrayliste göre daha performanslıdır. Ancak dezavantaj olarak da hem nesne hem de nesnenin referansı tutulduğundan bellekte daha fazla yer kaplamaktadır.
+
+<h4><i>2) Queue:</i></h4>
+Fabrikada olası işlemlerin not edilmesi için kullandığımız Note frame'indeki tablo, silme işlevi gerçekleştirilmek istenirse  kuyruk yapısına göre ilk giren ilk çıkar mantığında notlar silinmektedir.
+
+<h4><i>3) Stack:</i></h4>
+Fabrikada olası işlemlerin not edilmesi için kullandığımız Note frame'indeki tablo, silme işlevi gerçekleştirilmek istenirse  Stack yapısına göre son giren ilk çıkar mantığında notlar silinmektedir.
+
+<h4><i>4) Merge Sort:</i></h4>
+Fabrikada çalışanların görüntülendiği view frame'inde kişileri aldıkları maaş miktarı küçükten büyüğe sıralama işlemini en kötü durumda nlogn karmaşıklığa sahip merge sort algoritmaını kullanarak gerçekleştirdik.
+
+<h4><i>5) Interpolation Search:</i></h4>
+Fabrikada çalışanların görüntülendiği view frame'inde kişileri regex kullanarak anlık olarak aramanın yanında id numarası ile de arama işlemini en kısa zamanda gerçekleştirmek için kişilerin de id değerleri sıralı ve ardışık olarak arttığından ortalama değerde loglogn karmaşıklığa, en kötü durumda n karmaşıklığa ve uzay karmaşılığına (1) sahip olan interpolation search kullandık.
 
 <h3>Not:</h3>
   Programdaki veritabanı işlemlerinin doğru çalışabilmesi için veritabanının projeye dahil edilmesi gerekmektedir. <br>
